@@ -1,37 +1,32 @@
-﻿// Definición del struct
-struct Estudiante
-{
-    public string Nombre;
-    public int Edad;
-    public double Promedio;
-}
+﻿//definicion del record
+record EstudianteRecord(string Nombre, int Edad, double Promedio);
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Inicialización de datos
-        Estudiante e1 = new Estudiante { Nombre = "Juan", Edad = 20, Promedio = 4.5 };
-        Estudiante e2 = new Estudiante { Nombre = "Ana", Edad = 22, Promedio = 4.8 };
-        Estudiante e3 = new Estudiante { Nombre = "Luis", Edad = 19, Promedio = 3.9 };
+        // Inicialización
+        var e1 = new EstudianteRecord("Juan", 20, 4.5);
+        var e2 = new EstudianteRecord("Ana", 22, 4.8);
+        var e3 = new EstudianteRecord("Luis", 19, 3.9);
 
-        // Guardar en un arreglo
-        Estudiante[] estudiantes = { e1, e2, e3 };
+        // Arreglo
+        EstudianteRecord[] estudiantes = { e1, e2, e3 };
 
-        // Recorrido del arreglo
-        Console.WriteLine("Lista de estudiantes:");
+        // Recorrido
+        Console.WriteLine("Lista de estudiantes (record):");
         foreach (var e in estudiantes)
         {
-            Console.WriteLine($"Nombre: {e.Nombre}, Edad: {e.Edad}, Promedio: {e.Promedio}");
+            Console.WriteLine(e);
         }
 
-        // Modificación de un dato
-        estudiantes[1].Promedio = 4.9;
+        // Modificación (forma correcta en record)
+        estudiantes[1] = estudiantes[1] with { Promedio = 4.9 };
 
-        Console.WriteLine("\nDespués de modificar el promedio:");
+        Console.WriteLine("\nDespués de modificar:");
         foreach (var e in estudiantes)
         {
-            Console.WriteLine($"Nombre: {e.Nombre}, Edad: {e.Edad}, Promedio: {e.Promedio}");
+            Console.WriteLine(e);
         }
     }
 }
